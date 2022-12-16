@@ -1,4 +1,18 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { UserContext } from "./UserContext";
+
+
+
+export default function Header(){
+    const {user} = useContext(UserContext);
+    return(
+        <StyledHeader>
+                <p>TrackIt</p>
+                <img src={user.image} alt="userImg"></img>
+        </StyledHeader>
+    );
+}
 
 const StyledHeader = styled.div`
     position: fixed;
@@ -26,4 +40,3 @@ const StyledHeader = styled.div`
         border-radius: 98.5px;
     }
 `
-export default StyledHeader;

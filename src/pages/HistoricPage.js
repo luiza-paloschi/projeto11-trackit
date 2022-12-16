@@ -1,22 +1,21 @@
-import { useContext } from "react";
+
 import styled from "styled-components";
-import StyledHeader from "../components/Header";
-import { UserContext } from "../components/UserContext";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 export default function HistoricPage(){
-    const {user} = useContext(UserContext)
 
     return (
+        <>
+        <Header />
         <ScreenContainer>
-            <StyledHeader>
-                <p>TrackIt</p>
-                <img src={user.image} alt="userImg"></img>
-            </StyledHeader>
             <DivContent>
                 <h1>Histórico</h1>
                 <h2>Em breve você poderá ver o histórico dos seus hábitos aqui!</h2>
             </DivContent>
         </ScreenContainer>
+        <Footer />
+        </>
     );
 }
 const ScreenContainer = styled.div`
