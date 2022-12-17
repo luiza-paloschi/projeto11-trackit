@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -14,6 +14,7 @@ export default function LoginPage(){
         email: '',
         password: ''
       });
+  
 
     function handleForm(e){
     setForm({
@@ -28,6 +29,7 @@ export default function LoginPage(){
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body);
         promise.then((res)=>{
             console.log(res);
+            localStorage.setItem('user', JSON.stringify(res.data))
             setUser(res.data);
             navigate("/hoje");
         });

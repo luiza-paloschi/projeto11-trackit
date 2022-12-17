@@ -32,7 +32,9 @@ export default function TodayPage(){
             setTodayHabits(res.data);
             if (res.data.length > 0){
                 const doneHabits = res.data.filter((element) => element.done === true);
-                setProgress(Math.round((doneHabits.length / res.data.length) * 100));
+                const currentProgress = Math.round((doneHabits.length / res.data.length) * 100)
+                setProgress(currentProgress);
+                localStorage.setItem("progress", JSON.stringify(currentProgress));
             }
         })
     }, [refresh])

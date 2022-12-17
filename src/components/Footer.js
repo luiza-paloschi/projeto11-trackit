@@ -6,8 +6,8 @@ import { ProgressContext } from "./ProgressContext";
 import 'react-circular-progressbar/dist/styles.css';
 
 export default function Footer() {
-    const [progress] = useContext(ProgressContext)
-   
+    const [progress] = useContext(ProgressContext);
+    
     return (
         <StyledFooter data-test="menu">
             <Link data-test="habit-link" to="/habitos">
