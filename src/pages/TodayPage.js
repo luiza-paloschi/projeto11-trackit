@@ -19,7 +19,7 @@ dayjs.updateLocale('en', {
 export default function TodayPage(){
     const {user} = useContext(UserContext);
     const [progress, setProgress] = useContext(ProgressContext);
-    const [todayHabits, setTodayHabits] = useState([]);
+    const [todayHabits, setTodayHabits] = useState(undefined);
     const [refresh, setRefresh] = useState(false);
     const config = {
         headers: {
@@ -44,7 +44,7 @@ export default function TodayPage(){
                 setRefresh(!refresh);
             })
     }
-    if(todayHabits.length === 0){
+    if(todayHabits === undefined){
         return(
             <>
             <Header />
@@ -60,7 +60,7 @@ export default function TodayPage(){
         <>
         <Header />
         <ScreenContainer>
-            <DivTitle>
+            <DivTitle p={progress}>
                 <h2 data-test="today">{`${dayjs().format('dddd')}, ${dayjs().format('DD/MM')}`}</h2>
                 <h3 data-test="today-counter">{todayHabits.length === 0 || progress === 0 ? "Nenhum hábito concluído ainda" : `${progress}% dos hábitos concluídos`}</h3>
             </DivTitle>
@@ -145,7 +145,7 @@ const DivTitle = styled.div`
     h3{
     font-size: 17.976px;
     line-height: 22px;
-    color: #BABABA;
+    color: ${props => props.p > 0 ? "#8FC549" : "#BABABA"};
     margin-bottom: 28px;
     }
 `

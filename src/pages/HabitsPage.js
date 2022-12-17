@@ -9,7 +9,7 @@ import deleteIcon from "../assets/delete.png"
 
 export default function HabitsPage() {
     const { user } = useContext(UserContext);
-    const [habits, setHabits] = useState([]);
+    const [habits, setHabits] = useState(undefined);
     const [isDisabled, setIsDisabled] = useState(false);
     const days = ["D", "S", "T", "Q", "Q", "S", "S"];
     const [createHabit, setCreateHabit] = useState(false);
@@ -97,7 +97,7 @@ export default function HabitsPage() {
         }
     }
 
-    if(habits.length === 0){
+    if(habits === undefined){
         return(
             <>
             <Header />
