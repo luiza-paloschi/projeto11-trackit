@@ -41,11 +41,11 @@ export default function SignUpPage(){
         <ScreenContainer>
         <img src={logo} alt="logo"/>
         <FormSignUp onSubmit={signUp}>
-            <input name="email" type="email" placeholder="email" required onChange={handleForm} value={form.email} disabled={isDisabled}/>
-            <input name="password" type="password" placeholder="senha" required onChange={handleForm} value={form.password} disabled={isDisabled}/>
-            <input name="name" type="text" placeholder="nome" required onChange={handleForm} value={form.name} disabled={isDisabled}/>
-            <input name="image" type="url" placeholder="foto" required onChange={handleForm} value={form.image} disabled={isDisabled}/>
-            <button disabled={isDisabled} type="submit">
+            <input data-test="email-input" name="email" type="email" placeholder="email" required onChange={handleForm} value={form.email} disabled={isDisabled}/>
+            <input data-test="password-input" name="password" type="password" placeholder="senha" required onChange={handleForm} value={form.password} disabled={isDisabled}/>
+            <input data-test="user-name-input" name="name" type="text" placeholder="nome" required onChange={handleForm} value={form.name} disabled={isDisabled}/>
+            <input data-test="user-image-input" name="image" type="url" placeholder="foto" required onChange={handleForm} value={form.image} disabled={isDisabled}/>
+            <button data-test="signup-btn" disabled={isDisabled} type="submit">
                 {isDisabled? 
                 <ThreeDots
                 height="40" 
@@ -59,7 +59,7 @@ export default function SignUpPage(){
                  /> : "Cadastrar"}
                 </button>
         </FormSignUp>
-        <Link to="/">
+        <Link data-test="login-link" to="/">
             <p>Já tem uma conta? Faça login!</p>
         </Link>
     </ScreenContainer>

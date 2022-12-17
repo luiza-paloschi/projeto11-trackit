@@ -87,10 +87,10 @@ export default function HabitsPage() {
                 }
             }
             const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config)
-            promise.then((res =>{
+            promise.then((res) =>{
                 const filtered = habits.filter((element) => element.id !== id);
                 setHabits(filtered);
-            }))
+            })
             promise.catch((err) => {
                 alert(err.message)
             })
@@ -115,17 +115,17 @@ export default function HabitsPage() {
             <ScreenContainer>
                 <DivTitle>
                     <h2>Meus hábitos</h2>
-                    <button disabled={isDisabled} onClick={(() => setCreateHabit(!createHabit))}>+</button>
+                    <button data-test="habit-create-btn" disabled={isDisabled} onClick={(() => setCreateHabit(!createHabit))}>+</button>
                 </DivTitle>
                 {createHabit &&
-                    <FormCreateHabit onSubmit={saveHabit}>
-                        <input name="name" disabled={isDisabled} type="text" placeholder="nome do hábito" required onChange={handleForm} value={form.name} />
+                    <FormCreateHabit data-test="habit-create-container" onSubmit={saveHabit}>
+                        <input data-test="habit-name-input" name="name" disabled={isDisabled} type="text" placeholder="nome do hábito" required onChange={handleForm} value={form.name} />
                         <div>
-                            {days.map((day, index) => <ButtonDay disabled={isDisabled} form={form.days} day={index} type="button" onClick={() => handleDay(index)} key={index}>{day}</ButtonDay>)}
+                            {days.map((day, index) => <ButtonDay data-test="habit-day" disabled={isDisabled} form={form.days} day={index} type="button" onClick={() => handleDay(index)} key={index}>{day}</ButtonDay>)}
                         </div>
                         <DivButtons>
-                            <ButtonCancel type="button" disabled={isDisabled} onClick={() => setCreateHabit(!createHabit)}>Cancelar</ButtonCancel>
-                            <ButtonSave type="submit" disabled={isDisabled}>
+                            <ButtonCancel data-test="habit-create-cancel-btn" type="button" disabled={isDisabled} onClick={() => setCreateHabit(!createHabit)}>Cancelar</ButtonCancel>
+                            <ButtonSave data-test="habit-create-save-btn" type="submit" disabled={isDisabled}>
                                 {isDisabled ?
                                     <ThreeDots
                                         height="40"
@@ -141,11 +141,11 @@ export default function HabitsPage() {
                         </DivButtons>
                     </FormCreateHabit>}
                 {habits.length !== 0 ?
-                    habits.map((habit) => <DivHabits key={habit.id}>
-                        <img src={deleteIcon} onClick={()=> deleteHabit(habit.id)} alt="deleteIcon" />
-                        <p>{habit.name}</p>
+                    habits.map((habit) => <DivHabits data-test="habit-container" key={habit.id}>
+                        <img data-test="habit-delete-btn" src={deleteIcon} onClick={()=> deleteHabit(habit.id)} alt="deleteIcon" />
+                        <p data-test="habit-name">{habit.name}</p>
                         <div>
-                        {days.map((day, index) => <SpanDays key={index} index={index} habit={habit.days}>{day}</SpanDays>)}
+                        {days.map((day, index) => <SpanDays data-test="habit-day" key={index} index={index} habit={habit.days}>{day}</SpanDays>)}
                         </div>
                         </DivHabits>)
                     :

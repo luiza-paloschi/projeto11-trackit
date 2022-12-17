@@ -7,7 +7,7 @@ import { UserContext } from "./UserContext";
 export default function Header(){
     const {user} = useContext(UserContext);
     return(
-        <StyledHeader>
+        <StyledHeader data-test="header">
                 <p>TrackIt</p>
                 <img src={user.image} alt="userImg"></img>
         </StyledHeader>

@@ -40,9 +40,9 @@ export default function LoginPage(){
         <ScreenContainer>
             <img src={logo} alt="logo"/>
             <FormLogin onSubmit={login}>
-                <input name="email" type="email" placeholder="email" required onChange={handleForm} value={form.email} disabled={isDisabled}/>
-                <input name="password" type="password" placeholder="senha" required onChange={handleForm} value={form.password} disabled={isDisabled}/>
-                <button type="submit" disabled={isDisabled}>
+                <input data-test="email-input" name="email" type="email" placeholder="email" required onChange={handleForm} value={form.email} disabled={isDisabled}/>
+                <input data-test="password-input" name="password" type="password" placeholder="senha" required onChange={handleForm} value={form.password} disabled={isDisabled}/>
+                <button data-test="login-btn" type="submit" disabled={isDisabled}>
                 {isDisabled? 
                 <ThreeDots
                 height="40" 
@@ -56,7 +56,7 @@ export default function LoginPage(){
                  /> : "Entrar"}
                 </button>
             </FormLogin>
-            <Link to="/cadastro">
+            <Link data-test="signup-link" to="/cadastro">
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Link>
         </ScreenContainer>
