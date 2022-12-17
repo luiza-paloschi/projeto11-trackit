@@ -17,31 +17,31 @@ dayjs.updateLocale('en', {
 })
 
 export default function TodayPage(){
-    const {user} = useContext(UserContext)
+    const {user} = useContext(UserContext);
     const [progress, setProgress] = useContext(ProgressContext);
-    const [todayHabits, setTodayHabits] = useState([])
-    const [refresh, setRefresh] = useState(false)
+    const [todayHabits, setTodayHabits] = useState([]);
+    const [refresh, setRefresh] = useState(false);
     const config = {
         headers: {
             Authorization: `Bearer ${user.token}`
         }
-    }
+    };
     useEffect(()=> {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
         promise.then((res)=>{
             setTodayHabits(res.data);
             if (res.data.length > 0){
-                const doneHabits = res.data.filter((element) => element.done === true)
-                setProgress(Math.round((doneHabits.length / res.data.length) * 100))
+                const doneHabits = res.data.filter((element) => element.done === true);
+                setProgress(Math.round((doneHabits.length / res.data.length) * 100));
             }
         })
     }, [refresh])
 
     function checkHabit(habit){
-        const isDone = habit.done
-        const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/${isDone? "uncheck" : "check"}`, {}, config)
+        const isDone = habit.done;
+        const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/${isDone? "uncheck" : "check"}`, {}, config);
             promise.then(()=>{
-                setRefresh(!refresh)
+                setRefresh(!refresh);
             })
     }
     if(todayHabits.length === 0){
@@ -92,7 +92,7 @@ const ButtonCheck = styled.button`
     width: 69px;
     height: 69px;
     border: none;
-`
+`;
 
 const DivHabit = styled.div`
     width:100%;
@@ -102,6 +102,7 @@ const DivHabit = styled.div`
     justify-content: space-between;
     background: #FFFFFF;
     border-radius: 5px;
+    margin-bottom: 15px;
     h4{
         font-size: 19.976px;
         line-height: 25px;
