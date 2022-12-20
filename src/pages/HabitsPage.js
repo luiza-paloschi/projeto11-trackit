@@ -53,7 +53,7 @@ export default function HabitsPage() {
 
     function saveHabit(e) {
         e.preventDefault();
-        if(form.days.length ===0){
+        if (form.days.length === 0) {
             return alert("Selecione pelo menos um dia!");
         }
         setIsDisabled(true);
@@ -74,10 +74,10 @@ export default function HabitsPage() {
         });
     }
 
-    function deleteHabit(id){
-        if(window.confirm("Tem certeza de que quer deletar este hábito?")){
+    function deleteHabit(id) {
+        if (window.confirm("Tem certeza de que quer deletar este hábito?")) {
             const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
-            promise.then(() =>{
+            promise.then(() => {
                 const filtered = habits.filter((element) => element.id !== id);
                 setHabits(filtered);
             })
@@ -87,14 +87,14 @@ export default function HabitsPage() {
         }
     }
 
-    if(habits === undefined){
-        return(
+    if (habits === undefined) {
+        return (
             <>
-            <Header />
-            <ScreenContainer>
-                <div style={{marginTop: 50 + "px"}}>Carregando...</div>
-            </ScreenContainer>
-            <Footer />
+                <Header />
+                <ScreenContainer>
+                    <div style={{ marginTop: 50 + "px" }}>Carregando...</div>
+                </ScreenContainer>
+                <Footer />
             </>
         );
     }
@@ -115,7 +115,7 @@ export default function HabitsPage() {
                         </div>
                         <DivButtons>
                             <ButtonCancel data-test="habit-create-cancel-btn" type="button" disabled={isDisabled} onClick={() => setCreateHabit(!createHabit)}>Cancelar</ButtonCancel>
-                            <ButtonSave data-test="habit-create-save-btn" type="submit" disabled={isDisabled}>
+                            <ButtonSave data-test="habit-create-btn" type="submit" disabled={isDisabled}>
                                 {isDisabled ?
                                     <ThreeDots
                                         height="40"
@@ -132,12 +132,12 @@ export default function HabitsPage() {
                     </FormCreateHabit>}
                 {habits.length !== 0 ?
                     habits.map((habit) => <DivHabits data-test="habit-container" key={habit.id}>
-                        <img data-test="habit-delete-btn" src={deleteIcon} onClick={()=> deleteHabit(habit.id)} alt="deleteIcon" />
+                        <img data-test="habit-delete-btn" src={deleteIcon} onClick={() => deleteHabit(habit.id)} alt="deleteIcon" />
                         <p data-test="habit-name">{habit.name}</p>
                         <div>
-                        {days.map((day, index) => <SpanDays data-test="habit-day" key={index} index={index} habit={habit.days}>{day}</SpanDays>)}
+                            {days.map((day, index) => <SpanDays data-test="habit-day" key={index} index={index} habit={habit.days}>{day}</SpanDays>)}
                         </div>
-                        </DivHabits>)
+                    </DivHabits>)
                     :
                     <DivNoHabits>
                         <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
