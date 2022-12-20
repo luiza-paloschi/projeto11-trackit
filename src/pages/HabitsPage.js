@@ -55,23 +55,24 @@ export default function HabitsPage() {
         e.preventDefault();
         setIsDisabled(true);
         if (form.days.length === 0 || form.name.length === 0) {
+            alert("Preencha os dados corretamente!");
             setIsDisabled(false);
-            return alert("Preencha os dados corretamente!");
+            return
         }
         const body = { ...form };
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", body, config);
         promise.then((res) => {
-            setIsDisabled(false);
             setForm({
                 name: "",
                 days: []
             });
             setHabits([...habits, res.data]);
             setCreateHabit(false);
+            setIsDisabled(false);
         });
         promise.catch((err) => {
-            setIsDisabled(false);
             alert(err.message);
+            setIsDisabled(false);
         });
     }
 
