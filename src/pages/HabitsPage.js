@@ -53,8 +53,8 @@ export default function HabitsPage() {
 
     function saveHabit(e) {
         e.preventDefault();
-        if (form.days.length === 0) {
-            return alert("Selecione pelo menos um dia!");
+        if (form.days.length === 0 || form.name.length === 0) {
+            return alert("Preencha os dados corretamente!");
         }
         setIsDisabled(true);
         const body = { ...form };
@@ -105,11 +105,11 @@ export default function HabitsPage() {
             <ScreenContainer>
                 <DivTitle>
                     <h2>Meus hábitos</h2>
-                    <button data-test="habit-create-btn" disabled={isDisabled} onClick={(() => setCreateHabit(!createHabit))}>+</button>
+                    <button data-test="habit-create-btn" onClick={(() => setCreateHabit(!createHabit))}>+</button>
                 </DivTitle>
                 {createHabit &&
                     <FormCreateHabit data-test="habit-create-container" onSubmit={saveHabit}>
-                        <input data-test="habit-name-input" name="name" disabled={isDisabled} type="text" placeholder="nome do hábito" required onChange={handleForm} value={form.name} />
+                        <input data-test="habit-name-input" name="name" disabled={isDisabled} type="text" placeholder="nome do hábito" onChange={handleForm} value={form.name} />
                         <div>
                             {days.map((day, index) => <ButtonDay data-test="habit-day" disabled={isDisabled} form={form.days} day={index} type="button" onClick={() => handleDay(index)} key={index}>{day}</ButtonDay>)}
                         </div>
