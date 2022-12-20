@@ -115,7 +115,7 @@ export default function HabitsPage() {
                         </div>
                         <DivButtons>
                             <ButtonCancel data-test="habit-create-cancel-btn" type="button" disabled={isDisabled} onClick={() => setCreateHabit(!createHabit)}>Cancelar</ButtonCancel>
-                            <ButtonSave data-test="habit-create-btn" type="submit" disabled={isDisabled}>
+                            <ButtonSave data-test="habit-create-save-btn" type="submit" disabled={isDisabled}>
                                 {isDisabled ?
                                     <ThreeDots
                                         height="40"

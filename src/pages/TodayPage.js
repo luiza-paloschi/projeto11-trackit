@@ -72,7 +72,7 @@ export default function TodayPage(){
                     <div>
                         <h4 data-test="today-habit-name">{habit.name}</h4>
                         <h5 data-test="today-habit-sequence">Sequência atual: <span>{`${habit.currentSequence} ${habit.currentSequence > 1 ? "dias" : "dia"}`}</span></h5>
-                        <h5 data-test="today-habit-record">Seu recorde: <strong>{`${habit.currentSequence} ${habit.currentSequence > 1 ? "dias" : "dia"}`}</strong></h5>
+                        <h5 data-test="today-habit-record">Seu recorde: <strong>{`${habit.highestSequence} ${habit.highestSequence > 1 ? "dias" : "dia"}`}</strong></h5>
                     </div>
                     <div>
                         <ButtonCheck data-test="today-habit-check-btn" onClick={()=> checkHabit(habit)} done={habit.done}>
