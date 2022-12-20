@@ -65,7 +65,6 @@ export default function HabitsPage() {
                 name: "",
                 days: []
             });
-            setCreateHabit(false);
             setHabits([...habits, res.data]);
         });
         promise.catch((err) => {
