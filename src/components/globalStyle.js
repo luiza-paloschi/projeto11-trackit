@@ -20,6 +20,8 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	max-width: 100%;
+    overflow-x: hidden;
 }
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -27,6 +29,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	max-width: 100%;
+    overflow-x: hidden;
 }
 ol, ul {
 	list-style: none;
@@ -46,6 +50,6 @@ table {
 * {
     box-sizing: border-box;
 }
-`
+`;
 
 export default GlobalStyle;

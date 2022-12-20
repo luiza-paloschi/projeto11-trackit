@@ -19,7 +19,7 @@ export default function SignUpPage(){
         setForm({
             ...form,
             [e.target.name]: e.target.value,
-          }) ;
+          });
     }
 
     function signUp(event){
@@ -27,8 +27,7 @@ export default function SignUpPage(){
         setIsDisabled(true)
         const body = {...form}
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", body);
-        promise.then((res)=>{
-            console.log(res);
+        promise.then(()=>{
             navigate("/");
         });
         promise.catch((err) => {

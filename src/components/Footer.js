@@ -40,6 +40,7 @@ const StyledFooter = styled.div`
     width: 100%;
     height: 70px;
     left: 0px;
+    right: 0px;
     bottom: 0px;
     background: #FFFFFF;
     display: flex;

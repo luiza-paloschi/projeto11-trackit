@@ -1,12 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
-
-
+import { createContext, useState } from 'react';
 
 export const UserContext = createContext({});
 
 function getInitialState() {
     const userData = localStorage.getItem('user');
-    return userData ? JSON.parse(userData) : {}
+    return userData ? JSON.parse(userData) : {};
   }
 
 

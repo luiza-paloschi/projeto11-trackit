@@ -2,8 +2,6 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { UserContext } from "./UserContext";
 
-
-
 export default function Header(){
     const {user} = useContext(UserContext);
     return(
@@ -16,10 +14,12 @@ export default function Header(){
 
 const StyledHeader = styled.div`
     position: fixed;
+    z-index: 2;
     width: 100%;
     height: 70px;
     left: 0px;
     top: 0px;
+    right: 0px;
     background: #126BA5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -39,4 +39,4 @@ const StyledHeader = styled.div`
         height: 51px;
         border-radius: 98.5px;
     }
-`
+`;

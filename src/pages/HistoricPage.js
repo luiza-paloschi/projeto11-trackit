@@ -2,16 +2,16 @@
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import 'react-calendar/dist/Calendar.css';
 
 export default function HistoricPage(){
-
     return (
         <>
         <Header />
         <ScreenContainer>
             <DivContent>
                 <h1>Histórico</h1>
-                <h2>Em breve você poderá ver o histórico dos seus hábitos aqui!</h2>
+                <h2>Em breve você podeá ver o histórico dos seus hábitos aqui!</h2>
             </DivContent>
         </ScreenContainer>
         <Footer />
@@ -20,7 +20,8 @@ export default function HistoricPage(){
 }
 const ScreenContainer = styled.div`
     background-color: #F2F2F2;
-    width: 100vw;
+    max-width: 100vw;
+    overflow: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -29,6 +30,7 @@ const ScreenContainer = styled.div`
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
+    padding: 0px 20px;
     h1{
         font-size: 22.976px;
         line-height: 29px;
@@ -43,11 +45,11 @@ const ScreenContainer = styled.div`
     color: #666666;
     padding:0px;
     }
-`
+`;
 const DivContent = styled.div`
     width:100%;
     padding: 0px 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-`
+`;

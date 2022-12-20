@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -28,8 +28,7 @@ export default function LoginPage(){
         const body={...form};
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body);
         promise.then((res)=>{
-            console.log(res);
-            localStorage.setItem('user', JSON.stringify(res.data))
+            localStorage.setItem('user', JSON.stringify(res.data));
             setUser(res.data);
             navigate("/hoje");
         });
@@ -86,7 +85,7 @@ const ScreenContainer = styled.div`
     a{
        color: #52B6FF;
     }
-`
+`;
 const FormLogin = styled.form`
     width:100%;
     display: flex;
@@ -134,4 +133,4 @@ const FormLogin = styled.form`
             opacity: 0.7;
         }
     }
-`
+`;

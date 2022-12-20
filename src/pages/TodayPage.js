@@ -8,13 +8,13 @@ import { ProgressContext } from "../components/ProgressContext";
 import { UserContext } from "../components/UserContext";
 import checkIcon from "../assets/checkIcon.png";
 
-const updateLocale = require('dayjs/plugin/updateLocale')
-dayjs.extend(updateLocale)
+const updateLocale = require('dayjs/plugin/updateLocale');
+dayjs.extend(updateLocale);
 dayjs.updateLocale('en', {
   weekdays: [
     "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
   ]
-})
+});
 
 export default function TodayPage(){
     const {user} = useContext(UserContext);
@@ -32,26 +32,26 @@ export default function TodayPage(){
             setTodayHabits(res.data);
             if (res.data.length > 0){
                 const doneHabits = res.data.filter((element) => element.done === true);
-                const currentProgress = Math.round((doneHabits.length / res.data.length) * 100)
+                const currentProgress = Math.round((doneHabits.length / res.data.length) * 100);
                 setProgress(currentProgress);
                 localStorage.setItem("progress", JSON.stringify(currentProgress));
             }
         })
-    }, [refresh])
+    }, [refresh]);
 
     function checkHabit(habit){
         const isDone = habit.done;
         const promise = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}/${isDone? "uncheck" : "check"}`, {}, config);
             promise.then(()=>{
                 setRefresh(!refresh);
-            })
+            });
     }
     if(todayHabits === undefined){
         return(
             <>
             <Header />
             <ScreenContainer>
-                <div>Carregando...</div>
+                <div style={{marginTop: 50 + "px"}}>Carregando...</div>
             </ScreenContainer>
             <Footer />
             </>
@@ -67,7 +67,7 @@ export default function TodayPage(){
                 <h3 data-test="today-counter">{todayHabits.length === 0 || progress === 0 ? "Nenhum hábito concluído ainda" : `${progress}% dos hábitos concluídos`}</h3>
             </DivTitle>
             {todayHabits.length !== 0 &&
-                todayHabits.map((habit)=> 
+                todayHabits.map((habit)=>
                 <DivHabit data-test="today-habit-container" key={habit.id} current={habit.currentSequence} highest={habit.highestSequence} done={habit.done}>
                     <div>
                         <h4 data-test="today-habit-name">{habit.name}</h4>

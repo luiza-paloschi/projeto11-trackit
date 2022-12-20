@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { UserContext } from "../components/UserContext";
-import deleteIcon from "../assets/delete.png"
+import deleteIcon from "../assets/delete.png";
 
 export default function HabitsPage() {
     const { user } = useContext(UserContext);
@@ -17,19 +17,19 @@ export default function HabitsPage() {
         name: '',
         days: []
     });
+    const config = {
+        headers: {
+            Authorization: `Bearer ${user.token}`
+        }
+    };
 
     useEffect(() => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${user.token}`
-            }
-        }
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config)
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         promise.then((res) => {
-            setHabits(res.data)
+            setHabits(res.data);
         })
         promise.catch((err) => {
-            console.log(err)
+            alert(err.message);
         })
     }, [])
 
@@ -41,13 +41,13 @@ export default function HabitsPage() {
     }
 
     function handleDay(index) {
-        const newArray = [...form.days]
+        const newArray = [...form.days];
         if (!form.days.includes(index)) {
-            newArray.push(index)
-            setForm({ ...form, days: newArray })
+            newArray.push(index);
+            setForm({ ...form, days: newArray });
         } else {
-            const filtered = newArray.filter(element => element !== index)
-            setForm({ ...form, days: filtered })
+            const filtered = newArray.filter(element => element !== index);
+            setForm({ ...form, days: filtered });
         }
     }
 
@@ -58,41 +58,31 @@ export default function HabitsPage() {
         }
         setIsDisabled(true);
         const body = { ...form };
-        const config = {
-            headers: {
-                Authorization: `Bearer ${user.token}`
-            }
-        }
-        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", body, config)
+        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", body, config);
         promise.then((res) => {
             setIsDisabled(false);
             setForm({
                 name: "",
                 days: []
-            })
+            });
             setCreateHabit(false);
-            setHabits([...habits, res.data])
-        })
+            setHabits([...habits, res.data]);
+        });
         promise.catch((err) => {
             setIsDisabled(false);
-            alert(err.message)
-        })
+            alert(err.message);
+        });
     }
 
     function deleteHabit(id){
         if(window.confirm("Tem certeza de que quer deletar este hábito?")){
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${user.token}`
-                }
-            }
-            const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config)
-            promise.then((res) =>{
+            const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+            promise.then(() =>{
                 const filtered = habits.filter((element) => element.id !== id);
                 setHabits(filtered);
             })
             promise.catch((err) => {
-                alert(err.message)
+                alert(err.message);
             })
         }
     }
@@ -102,7 +92,7 @@ export default function HabitsPage() {
             <>
             <Header />
             <ScreenContainer>
-                <div>Carregando...</div>
+                <div style={{marginTop: 50 + "px"}}>Carregando...</div>
             </ScreenContainer>
             <Footer />
             </>
@@ -170,7 +160,7 @@ const SpanDays = styled.span`
     display:flex;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const DivHabits = styled.div`
     width:100%;
@@ -197,7 +187,7 @@ const DivHabits = styled.div`
         top: 12px;
         right: 10px;
     }
-`
+`;
 const DivNoHabits = styled.div`
     width: 100%;
     margin-top:30px;
@@ -206,7 +196,7 @@ const DivNoHabits = styled.div`
         line-height: 22px;
         color: #666666;
     }
-`
+`;
 const FormCreateHabit = styled.form`
     width: 100%;
     height: 180px;
@@ -238,14 +228,14 @@ const FormCreateHabit = styled.form`
         column-gap: 4px;
         
     }
-`
+`;
 const DivButtons = styled.div`
         width: 100%;
         display:flex;
         margin-top: 29px;
         justify-content: flex-end;
         column-gap: 10px;
-`
+`;
 const ButtonSave = styled.button`
     width: 84px;
     height: 35px;
@@ -261,7 +251,7 @@ const ButtonSave = styled.button`
     &:disabled{
         opacity: 0.7;
     }
-`
+`;
 const ButtonCancel = styled.button`
     width: 84px;
     height: 35px;
@@ -272,7 +262,7 @@ const ButtonCancel = styled.button`
     line-height: 20px;
     text-align: center;
     border:none;
-`
+`;
 const ButtonDay = styled.button`
     width: 30px;
     height: 30px;
@@ -282,7 +272,7 @@ const ButtonDay = styled.button`
     font-size: 19.976px;
     line-height: 25px;
     color: ${props => props.form.includes(props.day) ? "#FFFFFF" : " #DBDBDB"}; 
-`
+`;
 const DivTitle = styled.div`
     display: flex;
     width:100%;
@@ -305,7 +295,7 @@ const DivTitle = styled.div`
     color: #FFFFFF;
     border:none;
     }
-`
+`;
 
 const ScreenContainer = styled.div`
     background-color: #F2F2F2;
@@ -319,4 +309,4 @@ const ScreenContainer = styled.div`
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
-`
+`;
